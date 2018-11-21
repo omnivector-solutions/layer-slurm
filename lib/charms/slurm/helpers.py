@@ -7,6 +7,7 @@ SLURMD_SERVICE = 'slurmd'
 SLURMCTLD_SERVICE = 'slurmctld'
 SLURM_CONFIG_TEMPLATE = 'slurm.conf'
 SLURM_CONFIG_PATH = '/etc/slurm-llnl/slurm.conf'
+SLURM_CONFIG_DIR = '/etc/slurm-llnl'
 
 MUNGE_SERVICE = 'munge'
 MUNGE_KEY_TEMPLATE = 'munge.key'
@@ -21,6 +22,11 @@ def render_slurm_config(context):
            group=context.get('slurm_user'),
            perms=0o644)
 
+    # Extract clustername from context, create empty config file
+    clustername = context['clustername']
+    slurmconf_override = SLURM_CONFIG_DIR + '/slurm-' + clustername + '.conf'
+    if not os.path.exists(slurmconf_override):
+        open(slurmconf_override, 'a').close()
 
 def render_munge_key(context):
     render(source=MUNGE_KEY_TEMPLATE,
