@@ -26,7 +26,9 @@ def render_slurm_config(context):
     clustername = context['clustername']
     slurmconf_override = SLURM_CONFIG_DIR + '/slurm-' + clustername + '.conf'
     if not os.path.exists(slurmconf_override):
-        open(slurmconf_override, 'a').close()
+        with open(slurmconf_override, 'a') as f:
+            f.write("# This file is managed by Juju.\n")
+            f.write("# Local edits should not persist.\n")
 
 def render_munge_key(context):
     render(source=MUNGE_KEY_TEMPLATE,
