@@ -15,3 +15,12 @@ include: ['layer:slurm']
 This layer will set the following states:
 
 * **`slurm.installed`** Slurm packages are installed.
+
+
+### Contact
+For custom solutions extending this software:
+* [Omnivector Solutions](https://omnivector.solutions/contact)
+
+
+#### Copyright
+* AGPLv3 (see `LICENSE` file)

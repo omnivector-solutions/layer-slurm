@@ -1,10 +1,7 @@
 name: slurm
 summary: Base layer for Slurm
-maintainer: 
-  - Sandor Zeestraten <sandor.zeestraten@ntnu.no>
+maintainer: Omnivector Solutions <info@omnivector.solutions>
 description: |
   Base layer for Slurm charms.
 tags:
   - slurm
-series:
-  - xenial
