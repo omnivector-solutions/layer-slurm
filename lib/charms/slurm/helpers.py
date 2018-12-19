@@ -13,6 +13,8 @@ MUNGE_SERVICE = 'munge'
 MUNGE_KEY_TEMPLATE = 'munge.key'
 MUNGE_KEY_PATH = '/etc/munge/munge.key'
 
+GRES_CONFIG_TEMPLATE = 'gres.conf'
+GRES_CONFIG_PATH = '/etc/slurm-llnl/gres.conf'
 
 def render_slurm_config(context):
     render(source=SLURM_CONFIG_TEMPLATE,
@@ -38,6 +40,13 @@ def render_munge_key(context):
            group='munge',
            perms=0o400)
 
+def render_gres_config(context):
+    render(source=GRES_CONFIG_TEMPLATE,
+        target=GRES_CONFIG_PATH,
+        context=context,
+        owner=context.get('slurm_user'),
+        group=context.get('slurm_user'),
+        perms=0o644)
 
 def create_spool_dir(context):
     if not os.path.isdir(context.get('slurmd_spool_dir')):
